@@ -4,7 +4,6 @@ namespace UseTheFork\LaravelCast;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use UseTheFork\LaravelCast\Commands\LaravelCastCommand;
 
 class LaravelCastServiceProvider extends PackageServiceProvider
 {
@@ -15,6 +14,6 @@ class LaravelCastServiceProvider extends PackageServiceProvider
          *
          * More info: https://github.com/spatie/laravel-package-tools
          */
-        $package->name("laravel-cast");
+        $package->name('laravel-cast');
     }
 }

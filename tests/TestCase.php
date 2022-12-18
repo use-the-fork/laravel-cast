@@ -2,7 +2,6 @@
 
 namespace UseTheFork\LaravelCast\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use UseTheFork\LaravelCast\LaravelCastServiceProvider;
 
@@ -20,6 +19,6 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set("database.default", "testing");
+        config()->set('database.default', 'testing');
     }
 }

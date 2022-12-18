@@ -14,9 +14,8 @@ class Cast
     /**
      * return a boolean value
      *
-     * @param mixed $value
-     *
-     * @return boolean
+     * @param  mixed  $value
+     * @return bool
      */
     public static function boolean(mixed $value)
     {
@@ -34,8 +33,7 @@ class Cast
     /**
      * return a array of date values formated in various ways
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return array
      */
     public static function carbonize(string|int $value): array
@@ -43,15 +41,15 @@ class Cast
         $carbonDate = static::date($value);
 
         $date = [];
-        $date["date"] = $carbonDate->format("Y-m-d");
-        $date["week"] = $carbonDate->format("Y-W");
-        $date["quarter"] =
-            $carbonDate->format("Y") . "-" . $carbonDate->quarter;
-        $date["month_year"] = $carbonDate->format("Y-m");
-        $date["month"] = self::string($carbonDate->format("F"), true);
-        $date["year"] = $carbonDate->format("Y");
-        $date["hour"] = $carbonDate->format("H");
-        $date["day"] = self::string($carbonDate->format("N-D"), true);
+        $date['date'] = $carbonDate->format('Y-m-d');
+        $date['week'] = $carbonDate->format('Y-W');
+        $date['quarter'] =
+            $carbonDate->format('Y').'-'.$carbonDate->quarter;
+        $date['month_year'] = $carbonDate->format('Y-m');
+        $date['month'] = self::string($carbonDate->format('F'), true);
+        $date['year'] = $carbonDate->format('Y');
+        $date['hour'] = $carbonDate->format('H');
+        $date['day'] = self::string($carbonDate->format('N-D'), true);
 
         return $date;
     }
@@ -59,14 +57,13 @@ class Cast
     /**
      * return a date value
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return Carbon
      */
     public static function date(
         mixed $value,
         string $format = null,
-        string $timezone = "America/New_York"
+        string $timezone = 'America/New_York'
     ) {
         $value = Carbon::parse($value, $timezone);
 
@@ -76,8 +73,7 @@ class Cast
     /**
      * return a string value
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return string
      */
     public static function string(mixed $value, $lower = false)
@@ -88,14 +84,13 @@ class Cast
     /**
      * return a float value
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return float
      */
     public static function float(mixed $value, int $precision = 2)
     {
         return round(
-            floatval(preg_replace("/[^-0-9\.]/", "", (string) $value)),
+            floatval(preg_replace("/[^-0-9\.]/", '', (string) $value)),
             $precision
         );
     }
@@ -103,8 +98,7 @@ class Cast
     /**
      * return a int value
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return int
      */
     public static function int(mixed $value)
@@ -115,9 +109,8 @@ class Cast
     /**
      * return a validated phone number as string
      *
-     * @param mixed $value
-     *
-     * @return boolean
+     * @param  mixed  $value
+     * @return bool
      */
     public static function phone($phone)
     {
@@ -141,28 +134,28 @@ class Cast
 
         if (preg_match($alt_format, $phone, $matches)) {
             return self::string(
-                "(" .
-                    $matches[4] .
-                    ") " .
-                    $matches[5] .
-                    "-" .
-                    $matches[6] .
-                    (!empty($matches[8]) ? " " . $matches[8] : "")
+                '('.
+                    $matches[4].
+                    ') '.
+                    $matches[5].
+                    '-'.
+                    $matches[6].
+                    (! empty($matches[8]) ? ' '.$matches[8] : '')
             );
         } elseif (preg_match($format, $phone, $matches)) {
             // format
-            $phone = preg_replace($format, "($2) $3-$4", $phone);
+            $phone = preg_replace($format, '($2) $3-$4', $phone);
 
             // Remove likely has a preceding dash
-            $phone = ltrim($phone, "-");
+            $phone = ltrim($phone, '-');
 
             // Remove empty area codes
-            if (false !== strpos(trim($phone), "()", 0)) {
-                $phone = ltrim(trim($phone), "()");
+            if (false !== strpos(trim($phone), '()', 0)) {
+                $phone = ltrim(trim($phone), '()');
             }
 
             // Trim and remove double spaces created
-            return self::string(preg_replace("/\\s+/", " ", trim($phone)));
+            return self::string(preg_replace('/\\s+/', ' ', trim($phone)));
         }
 
         return null;
@@ -171,8 +164,7 @@ class Cast
     /**
      * return a URL value
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return string
      */
     public static function url(mixed $value)
@@ -183,15 +175,14 @@ class Cast
     /**
      * return a formated dollar value
      *
-     * @param mixed $value
-     *
+     * @param  mixed  $value
      * @return array
      */
     public static function usd(string|float $value): string
     {
         return (new NumberFormatter(
-            "en_US",
+            'en_US',
             NumberFormatter::CURRENCY
-        ))->formatCurrency($value, "USD");
+        ))->formatCurrency($value, 'USD');
     }
 }
