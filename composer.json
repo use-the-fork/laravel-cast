@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "use-the-fork/laravel-cast",
+    "description": "cast items in to a specific type",
     "keywords": [
-        ":vendor_name",
+        "use-the-fork",
         "laravel",
-        ":package_slug"
+        "laravel-cast"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/use-the-fork/laravel-cast",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Greg L",
+            "email": "sincore@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "UseTheFork\\LaravelCast\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "UseTheFork\\LaravelCast\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,10 +60,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "UseTheFork\\LaravelCast\\LaravelCastServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelCast": "UseTheFork\\LaravelCast\\Facades\\LaravelCast"
             }
         }
     },
