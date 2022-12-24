@@ -185,4 +185,21 @@ class Cast
             NumberFormatter::CURRENCY
         ))->formatCurrency($value, 'USD');
     }
+
+    /**
+     * return the first non empty value from params
+     *
+     * @param  mixed  $vars
+     * @return mixed
+     */
+    public static function current($vars = null)
+    {
+        foreach (func_get_args() as $value) {
+            if (! empty($value) || $value === 0) {
+                return $value;
+            }
+        }
+
+        return null;
+    }
 }
